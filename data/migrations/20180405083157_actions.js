@@ -10,7 +10,7 @@ exports.up = function(knex, Promise) {
       .inTable('projects');
 
     actions.string('description', 128).notNullable();
-    actions.text('notes').notNullable();
+    actions.text('notes');
     actions.boolean('completed').defaultTo(false);
   });
 };
