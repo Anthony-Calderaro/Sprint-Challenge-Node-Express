@@ -14,7 +14,7 @@ router.get("/", (req, res) => {
 });
 
 router.get("/:id", (req, res) => {
-  const id = req.body;
+  const id = req.params.id;
 
   projectHelper
     .get(id)
