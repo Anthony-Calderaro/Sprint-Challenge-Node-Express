@@ -15,7 +15,7 @@ router.get("/", (req, res) => {
 
 router.get("/:id", (req, res) => {
   const id = req.body;
-  
+
   actionHelper
     .get(id)
     .then(action => {
@@ -29,13 +29,41 @@ router.get("/:id", (req, res) => {
 router.post("/", (req, res) => {
   const newPost = req.body;
 
-    actionHelper
+  actionHelper
     .insert(newPost)
     .then(r => {
-        res.json(r);
+      res.json(r);
     })
     .catch(err => {
       res.status(500).send("Error: " + err);
     });
 });
 
+router.delete("/:id", (req, res) => {
+  const id = req.params.id;
+
+  actionHelper
+    .remove(id)
+    .then(r => {
+      res.json(r);
+    })
+    .catch(err => {
+      res.status(500).send("Error: " + err);
+    });
+});
+
+router.put("/:id", (req, res) => {
+  const id = req.params.id;
+  const updatedPost = req.body;
+
+  actionHelper
+    .update(id, updatedPost)
+    .then(r => {
+      res.json(r);
+    })
+    .catch(err => {
+      res.status(500).send("Error: " + err);
+    });
+});
+
+module.exports = router;
