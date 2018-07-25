@@ -1,11 +1,41 @@
-const express = require('express');
-const actionHelper = require('../data/helpers/actionModel.js');
+const express = require("express");
+const actionHelper = require("../data/helpers/actionModel.js");
 const router = express.Router();
 
-router.get('/', (req, res) => {
-    actionHelper.get().then(action => {
-        res.json(action);
-    }).catch(err => {
-        res.status(500).send('Error: ' + err)
+router.get("/", (req, res) => {
+  actionHelper
+    .get()
+    .then(action => {
+      res.json(action);
     })
-})
+    .catch(err => {
+      res.status(500).send("Error: " + err);
+    });
+});
+
+router.get("/:id", (req, res) => {
+  const id = req.body;
+  
+  actionHelper
+    .get(id)
+    .then(action => {
+      res.json(action);
+    })
+    .catch(err => {
+      res.status(500).send("Error: " + err);
+    });
+});
+
+router.post("/", (req, res) => {
+  const newPost = req.body;
+
+    actionHelper
+    .insert(newPost)
+    .then(r => {
+        res.json(r);
+    })
+    .catch(err => {
+      res.status(500).send("Error: " + err);
+    });
+});
+
