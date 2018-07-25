@@ -5,7 +5,7 @@ const helmet = require('helmet');
 const server = express();
 const port = 5000;
 
-const actionModel = require('./data/RouteHandlers/actionRoute.js')
+const actionModel = require('./data/routes/actionRoute.js')
 const projectModel = require('./data/RouteHandlers/projectRoute.js')
 
 server.use(express.json())
